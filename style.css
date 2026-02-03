@@ -11,3 +11,30 @@
   --color-text: #3A3440;
   --color-text-secondary: #6F6877;
 }
+
+body {
+  background-color: var(--color-bg);
+  color: var(--color-text);
+  font-family: system-ui, -apple-system, BlinkMacSystemFont, sans-serif;
+}
+
+h1, h2, h3 {
+  color: var(--color-text);
+}
+
+p {
+  color: var(--color-text-secondary);
+}
+
+a {
+  color: var(--color-accent);
+}
+
+a:hover {
+  color: var(--color-primary);
+}
+
+button {
+  background-color: var(--color-primary);
+  color: var(--color-text);
+}
