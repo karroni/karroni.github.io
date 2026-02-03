@@ -41,7 +41,27 @@
   <main class="container">
     <section class="panel" id="studies" data-panel>
       <h1>Studies</h1>
-      <p>Applied AI MSc, focus on ML, data analytics, and responsible AI.</p>
+      <p class="muted">Degrees and coursework (expand a degree to see courses).</p>
+      
+      <div id="studies-timeline" class="timeline" aria-label="Studies timeline"></div>
+      
+      <section class="insight">
+        <h2>Education keyword cloud</h2>
+        <p class="muted">Optional: Power BI word cloud based on course content.</p>
+      
+        <!-- Placeholder (Power BI public embed or image fallback) -->
+        <div class="pbi" aria-label="Word cloud embed">
+          <iframe
+            title="Course content word cloud"
+            src=""
+            allowfullscreen="true">
+          </iframe>
+        </div>
+      
+        <!-- If you cannot embed Power BI publicly, use an image instead:
+        <img class="insight-img" src="/images/wordcloud.png" alt="Word cloud of course content">
+        -->
+      </section>
     </section>
 
     <section class="panel" id="work" data-panel hidden>
