@@ -3,53 +3,48 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-
   <title>Karoline Nielsen</title>
 
-  <!-- IBM Plex Sans -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@300;400;500;600;700&display=swap" rel="stylesheet">
-
-  <!-- Styles -->
   <link rel="stylesheet" href="/style.css" />
 </head>
 
 <body>
   <header class="site-header">
-    <div class="container">
-      <h1 class="site-title">Karoline Nielsen</h1>
+    <div class="container header-row">
+      <div class="brand">Karoline Nielsen</div>
 
-      <nav class="site-nav">
-        <a href="/">Home</a>
-        <a href="/projects.html">Projects</a>
-        <a href="/insights.html">Data Insights</a>
-        <a href="/about.html">About</a>
+      <nav class="tabs" aria-label="Sections">
+        <a class="tab" href="#studies" data-section="studies">Studies</a>
+        <a class="tab" href="#work" data-section="work">Work</a>
+        <a class="tab" href="#travels" data-section="travels">Travels</a>
       </nav>
     </div>
   </header>
 
   <main class="container">
-    <section class="hero">
-      <h2>Applied AI & Data Analytics</h2>
-      <p>
-        I build data-driven insights and applied machine learning solutions,
-        with a focus on clarity, ethics, and impact.
-      </p>
+    <section class="panel" id="studies" data-panel>
+      <h1>Studies</h1>
+      <p>Applied AI MSc, focus on ML, data analytics, and responsible AI.</p>
     </section>
 
-    <section>
-      <h3>Featured work</h3>
-      <p>
-        Selected projects in machine learning, analytics, and visualization.
-      </p>
+    <section class="panel" id="work" data-panel hidden>
+      <h1>Work</h1>
+      <p>Experience highlights, roles, and impact metrics.</p>
+    </section>
+
+    <section class="panel" id="travels" data-panel hidden>
+      <h1>Travels</h1>
+      <p>Places, projects, and stories (maps/photos optional).</p>
     </section>
   </main>
 
   <footer class="site-footer">
-    <div class="container">
-      <p>© 2026 Karoline Nielsen</p>
-    </div>
+    <div class="container">© 2026 Karoline Nielsen</div>
   </footer>
+
+  <script src="/app.js"></script>
 </body>
 </html>
