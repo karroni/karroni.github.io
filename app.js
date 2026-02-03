@@ -130,3 +130,62 @@ function renderWorkTimeline(mountId, items) {
 document.addEventListener("DOMContentLoaded", () => {
   renderWorkTimeline("work-timeline", workTimeline);
 });
+
+function renderStudiesTimeline(mountId, items) {
+  const mount = document.getElementById(mountId);
+  if (!mount) return;
+
+  mount.innerHTML = items.map((item, idx) => {
+    const bodyId = `${item.id}-body`;
+
+    const coursesHtml = (item.courses && item.courses.length)
+      ? `
+        <ul class="course-list" aria-label="Courses">
+          ${item.courses.map(c => `
+            <li class="course">
+              <span>${c.name}</span>
+              ${c.tag ? `<span class="badge">${c.tag}</span>` : ""}
+            </li>
+          `).join("")}
+        </ul>
+      `
+      : `<p class="muted" style="margin:0.75rem 0 0;">Courses: to be added.</p>`;
+
+    return `
+      <div class="timeline-item">
+        <div class="timeline-dot" aria-hidden="true"></div>
+
+        <div class="timeline-card">
+          <button class="timeline-header"
+                  type="button"
+                  aria-expanded="${idx === 0 ? "true" : "false"}"
+                  aria-controls="${bodyId}"
+                  data-toggle="${bodyId}">
+            <div>
+              <p class="timeline-title">${item.title}</p>
+              <p class="timeline-meta">${item.org}</p>
+            </div>
+            <div class="timeline-dates">${item.dates}</div>
+          </button>
+
+          <div class="timeline-body" id="${bodyId}" ${idx === 0 ? "" : "hidden"}>
+            <ul>
+              ${(item.bullets || []).map(b => `<li>${b}</li>`).join("")}
+            </ul>
+            ${coursesHtml}
+          </div>
+        </div>
+      </div>
+    `;
+  }).join("");
+
+  mount.querySelectorAll("button[data-toggle]").forEach(btn => {
+    btn.addEventListener("click", () => {
+      const bodyId = btn.getAttribute("data-toggle");
+      const body = document.getElementById(bodyId);
+      const isOpen = btn.getAttribute("aria-expanded") === "true";
+      btn.setAttribute("aria-expanded", String(!isOpen));
+      if (body) body.hidden = isOpen;
+    });
+  });
+}
