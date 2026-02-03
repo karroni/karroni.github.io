@@ -1,1 +1,13 @@
+:root {
+  /* Background */
+  --color-bg: #F7F5F8;
 
+  /* Brand */
+  --color-primary: #C6BDD8;
+  --color-secondary: #9EAD9A;
+  --color-accent: #7E8C84;
+
+  /* Text */
+  --color-text: #3A3440;
+  --color-text-secondary: #6F6877;
+}
