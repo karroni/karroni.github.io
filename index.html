@@ -3,33 +3,18 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>Karoline N. – ePortfolio</title>
-
+  <title>Karoline Nielsen</title>
   <link rel="icon" href="/kn-logo-minimal.svg" type="image/svg+xml">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@300;400;500;600;700&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="/style.css" />
 </head>
-
 <body>
 
-  <section>
-  <h2>Data Insights</h2>
-
-  <!-- <div class="pbi">
-    <iframe
-      title="Power BI Report"
-      src="https://app.powerbi.com/view?r=REPLACE_WITH_YOUR_PUBLISH_TO_WEB_LINK"
-      allowfullscreen="true">
-    </iframe> 
-  </div> -->
-</section>
-  
   <header class="site-header">
     <div class="container header-row">
-      <div class="brand">Karoline Nielsen's ePortfolio</div>
-
+      <div class="brand">Karoline Nielsen</div>
       <nav class="tabs" aria-label="Sections">
         <a class="tab" href="#studies" data-section="studies">Studies</a>
         <a class="tab" href="#work" data-section="work">Work</a>
@@ -38,48 +23,29 @@
     </div>
   </header>
 
-
   <main class="container">
     <div id="filter-bar"></div>
+
     <section class="panel" id="studies" data-panel>
       <h1>Studies</h1>
-      <p class="muted">Degrees and coursework (expand a degree to see courses).</p>
-      
+      <p>What I've learned — and what I can do with it.</p>
       <div id="studies-timeline" class="timeline" aria-label="Studies timeline"></div>
-      
-      <section class="insight">
-        <h2>Education keyword cloud</h2>
-        <p class="muted">Optional: Power BI word cloud based on course content.</p>
-      
-        <!-- Placeholder (Power BI public embed or image fallback)
-        <div class="pbi" aria-label="Word cloud embed">
-          <iframe
-            title="Course content word cloud"
-            src=""
-            allowfullscreen="true">
-          </iframe>
-        </div>  -->
-      
-        <!-- If you cannot embed Power BI publicly, use an image instead:
-        <img class="insight-img" src="/images/wordcloud.png" alt="Word cloud of course content">
-        -->
-      </section>
     </section>
 
     <section class="panel" id="work" data-panel hidden>
       <h1>Work</h1>
-      <p class="muted">Selected roles and responsibilities.</p>
+      <p>Where I've applied my skills — and what I've built.</p>
       <div id="work-timeline" class="timeline" aria-label="Work experience timeline"></div>
     </section>
 
     <section class="panel" id="travels" data-panel hidden>
       <h1>Travels</h1>
-      <p>Places, projects, and stories (maps/photos optional).</p>
+      <p>Places, projects, and stories (coming soon).</p>
     </section>
   </main>
 
   <footer class="site-footer">
-    <div class="container">© 2026 Karoline Nielsen</div>
+    <div class="container">&copy; 2026 Karoline Nielsen</div>
   </footer>
 
   <script src="/app.js"></script>
