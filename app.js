@@ -77,15 +77,15 @@ const homeWindows = [
     id: "studies",
     label: "Studies",
     icon: "📚",
-    color: "#7c5ea3",
+    color: "#8B5CF6",
     items: studiesTimeline.map((item, i) => ({
       id:    item.id,
       title: item.title,
       meta:  `${item.org} · ${item.dates}`,
       bg: [
-        "linear-gradient(145deg, #8b6ac4 0%, #4a3070 100%)",
-        "linear-gradient(145deg, #4e90cc 0%, #2a5a8a 100%)",
-        "linear-gradient(145deg, #7a8fd4 0%, #3a4a8a 100%)"
+        "linear-gradient(145deg, #9F7AEA 0%, #6B46C1 100%)",
+        "linear-gradient(145deg, #667EEA 0%, #4C51BF 100%)",
+        "linear-gradient(145deg, #B794F4 0%, #7C3AED 100%)"
       ][i]
     }))
   },
@@ -93,17 +93,17 @@ const homeWindows = [
     id: "work",
     label: "Work",
     icon: "💼",
-    color: "#c47f35",
+    color: "#F59E0B",
     items: workTimeline.filter(w => w.tags.length > 0).map((item, i) => ({
       id:    item.id,
       title: item.role,
       meta:  `${item.org} · ${item.dates}`,
       bg: [
-        "linear-gradient(145deg, #1c1c3a 0%, #3c3c7e 100%)",
-        "linear-gradient(145deg, #1a7a6e 0%, #0d4a44 100%)",
-        "linear-gradient(145deg, #c44060 0%, #7a2040 100%)",
-        "linear-gradient(145deg, #3a9a7a 0%, #1a6a4a 100%)",
-        "linear-gradient(145deg, #e67c20 0%, #a44a10 100%)"
+        "linear-gradient(145deg, #1a1a2e 0%, #3c3c7e 100%)",
+        "linear-gradient(145deg, #0EA5C9 0%, #0369A1 100%)",
+        "linear-gradient(145deg, #F43F5E 0%, #BE123C 100%)",
+        "linear-gradient(145deg, #10B981 0%, #047857 100%)",
+        "linear-gradient(145deg, #F59E0B 0%, #B45309 100%)"
       ][i]
     }))
   },
@@ -111,19 +111,19 @@ const homeWindows = [
     id: "projects",
     label: "Projects",
     icon: "⚡",
-    color: "#3d8b9e",
+    color: "#0EA5C9",
     items: projectsTimeline.map(item => ({
       id:    item.id,
       title: item.title,
       meta:  (item.tech || []).slice(0, 3).join(" · "),
-      bg:    "linear-gradient(145deg, #3d8b9e 0%, #1d5a6b 100%)"
+      bg:    "linear-gradient(145deg, #0EA5C9 0%, #0369A1 100%)"
     }))
   },
   {
     id: "travels",
     label: "Travels",
     icon: "✈️",
-    color: "#5a8a58",
+    color: "#10B981",
     items: []
   }
 ];
