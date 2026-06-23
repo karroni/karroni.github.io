@@ -204,3 +204,116 @@ export function renderProjectsGrid(mountId, items) {
     `;
   }).join("");
 }
+
+
+/* ───────────────────────────────────────
+   Home windows
+   ─────────────────────────────────────── */
+
+export function renderHomeWindows(mountId, windows, onNavigate) {
+  const mount = document.getElementById(mountId);
+  if (!mount) return;
+
+  mount.innerHTML = `
+    <div class="home-windows">
+      ${windows.map(win => renderWindow(win)).join("")}
+    </div>
+  `;
+
+  mount.querySelectorAll(".home-window").forEach(el => initSlideshow(el, onNavigate));
+}
+
+function renderWindow(win) {
+  const comingSoon = win.items.length === 0;
+  const fallbackBg = `linear-gradient(145deg, ${win.color} 0%, ${win.color}99 100%)`;
+  const slides = comingSoon
+    ? [{ id: null, title: "Coming soon", meta: "Check back later", bg: fallbackBg }]
+    : win.items.map(item => ({ ...item, bg: item.bg || fallbackBg }));
+
+  return `
+    <div class="home-window" style="--win-color:${win.color}">
+      <div class="window-header">
+        <span aria-hidden="true">${win.icon}</span>
+        ${win.label}
+      </div>
+      <div class="window-slides-wrapper">
+        ${slides.map((slide, i) => `
+          <div class="window-slide ${i === 0 ? "active" : ""}"
+               data-section="${win.id}"
+               data-item="${slide.id || ""}"
+               style="background:${slide.bg}"
+               role="button"
+               tabindex="0"
+               aria-label="View: ${slide.title}">
+            <div class="slide-content">
+              <p class="slide-title">${slide.title}</p>
+              <p class="slide-meta">${slide.meta}</p>
+            </div>
+          </div>
+        `).join("")}
+      </div>
+      <div class="window-footer">
+        <div class="window-dots">
+          ${slides.map((_, i) => `
+            <button class="window-dot ${i === 0 ? "active" : ""}"
+                    data-idx="${i}"
+                    type="button"
+                    aria-label="Slide ${i + 1}"></button>
+          `).join("")}
+        </div>
+        ${!comingSoon ? `<button class="window-view-all" type="button" data-section="${win.id}">View all →</button>` : ""}
+      </div>
+    </div>
+  `;
+}
+
+function initSlideshow(windowEl, onNavigate) {
+  const slides = windowEl.querySelectorAll(".window-slide");
+  const dots   = windowEl.querySelectorAll(".window-dot");
+  if (!slides.length) return;
+
+  let current = 0;
+  let timer;
+
+  function goTo(idx) {
+    slides[current].classList.remove("active");
+    dots[current]?.classList.remove("active");
+    current = ((idx % slides.length) + slides.length) % slides.length;
+    slides[current].classList.add("active");
+    dots[current]?.classList.add("active");
+  }
+
+  function start() { timer = setInterval(() => goTo(current + 1), 4000); }
+  function stop()  { clearInterval(timer); }
+
+  windowEl.addEventListener("mouseenter", stop);
+  windowEl.addEventListener("mouseleave", start);
+
+  dots.forEach((dot, i) => {
+    dot.addEventListener("click", e => {
+      e.stopPropagation();
+      goTo(i);
+      stop(); start();
+    });
+  });
+
+  slides.forEach(slide => {
+    slide.addEventListener("click", () => {
+      const section = slide.dataset.section;
+      const itemId  = slide.dataset.item || null;
+      if (section && onNavigate) onNavigate(section, itemId);
+    });
+    slide.addEventListener("keydown", e => {
+      if (e.key === "Enter" || e.key === " ") { e.preventDefault(); slide.click(); }
+    });
+  });
+
+  windowEl.querySelector(".window-view-all")?.addEventListener("click", e => {
+    e.stopPropagation();
+    const section = slides[0]?.dataset.section;
+    if (section && onNavigate) onNavigate(section, null);
+  });
+
+  goTo(0);
+  start();
+}

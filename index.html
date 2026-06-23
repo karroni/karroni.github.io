@@ -14,8 +14,9 @@
 
   <header class="site-header">
     <div class="container header-row">
-      <div class="brand">Karoline Nielsen</div>
+      <a class="brand" href="#home">Karoline Nielsen</a>
       <nav class="tabs" aria-label="Sections">
+        <a class="tab" href="#home"     data-section="home">Home</a>
         <a class="tab" href="#studies"  data-section="studies">Studies</a>
         <a class="tab" href="#work"     data-section="work">Work</a>
         <a class="tab" href="#projects" data-section="projects">Projects</a>
@@ -25,28 +26,31 @@
   </header>
 
   <main class="container">
-    <section class="hero" aria-label="Introduction">
-      <div class="hero-avatar" aria-hidden="true">
-        <!--
-          To use a real photo, replace the div below with:
-          <img src="/assets/photo.jpg" alt="Karoline Nielsen" class="hero-photo">
-          (drop your photo into an assets/ folder first)
-        -->
-        <div class="hero-initials">KN</div>
-      </div>
-      <div class="hero-content">
-        <h2 class="hero-name">Karoline Nielsen</h2>
-        <p class="hero-bio">MSc student in Applied AI at OsloMet, with a background in data analytics and interaction design. I wish to build things at the intersection of intelligent systems and human experience.</p>
-        <span class="hero-status">
-          <span class="status-dot" aria-hidden="true"></span>
-          Open to opportunities
-        </span>
-      </div>
-    </section>
-
     <div id="filter-bar"></div>
 
-    <section class="panel" id="studies" data-panel>
+    <section class="panel" id="home" data-panel>
+      <section class="hero" aria-label="Introduction">
+        <div class="hero-avatar" aria-hidden="true">
+          <!--
+            To use a real photo, replace the div below with:
+            <img src="/assets/photo.jpg" alt="Karoline Nielsen" class="hero-photo">
+            (drop your photo into an assets/ folder first)
+          -->
+          <div class="hero-initials">KN</div>
+        </div>
+        <div class="hero-content">
+          <h2 class="hero-name">Karoline Nielsen</h2>
+          <p class="hero-bio">MSc student in Applied AI at OsloMet, with a background in data analytics and interaction design. I wish to build things at the intersection of intelligent systems and human experience.</p>
+          <span class="hero-status">
+            <span class="status-dot" aria-hidden="true"></span>
+            Open to opportunities
+          </span>
+        </div>
+      </section>
+      <div id="home-windows"></div>
+    </section>
+
+    <section class="panel" id="studies" data-panel hidden>
       <h1>Studies</h1>
       <p>What I've learned — and what I can do with it.</p>
       <div id="studies-timeline" class="timeline" aria-label="Studies timeline"></div>
@@ -58,15 +62,15 @@
       <div id="work-timeline" class="timeline" aria-label="Work experience timeline"></div>
     </section>
 
-    <section class="panel" id="travels" data-panel hidden>
-      <h1>Travels</h1>
-      <p>Places, projects, and stories (coming soon).</p>
-    </section>
-
     <section class="panel" id="projects" data-panel hidden>
       <h1>Projects</h1>
       <p>Things I've built — code, data, and everything in between.</p>
       <div id="projects-grid" class="projects-grid" aria-label="Projects"></div>
+    </section>
+
+    <section class="panel" id="travels" data-panel hidden>
+      <h1>Travels</h1>
+      <p>Places, projects, and stories (coming soon).</p>
     </section>
   </main>
 
