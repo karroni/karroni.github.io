@@ -2,26 +2,26 @@
   /* ── Base palette ──────────────────────────────────────────
      Change any value here and it updates everywhere on the site.
      ──────────────────────────────────────────────────────── */
-  --color-bg:             #FFFEF9;
-  --color-primary:        #DAEEFF;
-  --color-secondary:      #FFE4F0;
-  --color-accent:         #7ECBA1;
-  --color-text:           #1E2832;
-  --color-text-secondary: #5A6E80;
+  --color-bg:             #FBFCFF;
+  --color-primary:        #DCEEFF;
+  --color-secondary:      #ECE7FF;
+  --color-accent:         #6D5EF3;
+  --color-text:           #1F2937;
+  --color-text-secondary: #253142;
   --font-sans: "IBM Plex Sans", system-ui, -apple-system, BlinkMacSystemFont, sans-serif;
 
   /* ── Domain / category colours ────────────────────────────
      Used by filter chips, skill chips, and home window headers.
      ──────────────────────────────────────────────────────── */
-  --cat-data-analytics-color:     #0EA5C9;
+  --cat-data-analytics-color:     #C86A7A;
   --cat-data-analytics-bg:        rgba(14, 165, 201, 0.12);
-  --cat-ai-ml-color:              #8B5CF6;
+  --cat-ai-ml-color:              #C9A44C;
   --cat-ai-ml-bg:                 rgba(139, 92, 246, 0.12);
-  --cat-system-dev-color:         #F59E0B;
+  --cat-system-dev-color:         #5F9D82;
   --cat-system-dev-bg:            rgba(245, 158, 11, 0.12);
-  --cat-interaction-design-color: #10B981;
+  --cat-interaction-design-color: #6A8FD8;
   --cat-interaction-design-bg:    rgba(16, 185, 129, 0.12);
-  --cat-research-society-color:   #F43F5E;
+  --cat-research-society-color:   #8B73D6;
   --cat-research-society-bg:      rgba(244, 63, 94, 0.12);
 
   /* ── Home window accent colours ───────────────────────────
