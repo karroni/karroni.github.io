@@ -1,0 +1,750 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Style Guide — Karoline Nielsen</title>
+  <link rel="icon" href="/kn-logo-minimal.svg" type="image/svg+xml">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="/style.css" />
+  <style>
+    /* ── Style guide layout ── */
+    .sg-nav {
+      position: sticky;
+      top: 0;
+      z-index: 10;
+      background: var(--color-bg);
+      border-bottom: 1px solid rgba(58,52,64,0.1);
+      padding: 0.6rem 1.5rem;
+      display: flex;
+      gap: 1.5rem;
+      flex-wrap: wrap;
+    }
+    .sg-nav a {
+      font-size: 0.82rem;
+      font-weight: 600;
+      text-decoration: none;
+      color: var(--color-text-secondary);
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+      transition: color 0.2s;
+    }
+    .sg-nav a:hover { color: var(--color-text); }
+
+    .sg-section {
+      max-width: 1100px;
+      margin: 0 auto;
+      padding: 3rem 1.5rem 1rem;
+    }
+    .sg-section + .sg-section {
+      border-top: 1px solid rgba(58,52,64,0.08);
+    }
+
+    .sg-title {
+      font-size: 0.72rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.1em;
+      color: var(--color-text-secondary);
+      margin: 0 0 1.75rem;
+    }
+    .sg-subtitle {
+      font-size: 0.7rem;
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      color: var(--color-text-secondary);
+      margin: 2rem 0 0.75rem;
+      opacity: 0.7;
+    }
+
+    /* ── Identity statement ── */
+    .identity-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+      gap: 1rem;
+      margin-bottom: 2rem;
+    }
+    .identity-card {
+      background: rgba(255,255,255,0.6);
+      border: 1px solid rgba(58,52,64,0.1);
+      border-radius: 16px;
+      padding: 1.25rem;
+    }
+    .identity-card h3 {
+      margin: 0 0 0.4rem;
+      font-size: 0.9rem;
+      font-weight: 700;
+    }
+    .identity-card p {
+      margin: 0;
+      font-size: 0.85rem;
+      color: var(--color-text-secondary);
+      line-height: 1.55;
+    }
+
+    /* ── Colour swatches ── */
+    .swatch-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(160px, 1fr));
+      gap: 0.75rem;
+    }
+    .swatch {
+      border-radius: 14px;
+      overflow: hidden;
+      border: 1px solid rgba(58,52,64,0.08);
+      background: white;
+    }
+    .swatch-color {
+      height: 72px;
+    }
+    .swatch-info {
+      padding: 0.65rem 0.8rem;
+    }
+    .swatch-name {
+      font-size: 0.78rem;
+      font-weight: 600;
+      margin: 0 0 0.1rem;
+    }
+    .swatch-hex {
+      font-size: 0.72rem;
+      color: var(--color-text-secondary);
+      font-family: monospace;
+      margin: 0 0 0.2rem;
+    }
+    .swatch-usage {
+      font-size: 0.7rem;
+      color: var(--color-text-secondary);
+      margin: 0;
+      line-height: 1.4;
+    }
+
+    /* ── Typography ── */
+    .type-row {
+      display: flex;
+      align-items: baseline;
+      gap: 1.5rem;
+      padding: 0.85rem 0;
+      border-bottom: 1px solid rgba(58,52,64,0.06);
+    }
+    .type-label {
+      width: 180px;
+      flex-shrink: 0;
+      font-size: 0.72rem;
+      color: var(--color-text-secondary);
+      font-family: monospace;
+    }
+    .type-sample { flex: 1; }
+
+    /* ── Spacing scale ── */
+    .space-grid {
+      display: flex;
+      flex-direction: column;
+      gap: 0.5rem;
+    }
+    .space-row {
+      display: flex;
+      align-items: center;
+      gap: 1rem;
+    }
+    .space-box {
+      background: var(--color-accent);
+      opacity: 0.35;
+      height: 16px;
+      border-radius: 4px;
+      flex-shrink: 0;
+    }
+    .space-label {
+      font-size: 0.75rem;
+      font-family: monospace;
+      color: var(--color-text-secondary);
+    }
+
+    /* ── Motion ── */
+    .motion-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
+      gap: 1rem;
+    }
+    .motion-card {
+      background: rgba(255,255,255,0.6);
+      border: 1px solid rgba(58,52,64,0.1);
+      border-radius: 14px;
+      padding: 1.1rem;
+    }
+    .motion-card h3 {
+      margin: 0 0 0.3rem;
+      font-size: 0.85rem;
+      font-weight: 700;
+    }
+    .motion-card code {
+      display: block;
+      font-size: 0.72rem;
+      color: var(--color-accent);
+      background: rgba(156,138,174,0.12);
+      padding: 0.35rem 0.6rem;
+      border-radius: 6px;
+      margin: 0.4rem 0;
+      font-family: monospace;
+      word-break: break-all;
+    }
+    .motion-card p {
+      margin: 0.3rem 0 0;
+      font-size: 0.78rem;
+      color: var(--color-text-secondary);
+      line-height: 1.5;
+    }
+
+    /* ── Component shelf ── */
+    .component-shelf {
+      background: rgba(255,255,255,0.45);
+      border: 1px solid rgba(58,52,64,0.08);
+      border-radius: 16px;
+      padding: 1.5rem;
+      margin-bottom: 1.5rem;
+    }
+    .component-shelf-label {
+      font-size: 0.7rem;
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: 0.07em;
+      color: var(--color-text-secondary);
+      margin-bottom: 1rem;
+    }
+    .component-row {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.5rem;
+      align-items: center;
+    }
+    .component-row + .component-row {
+      margin-top: 0.75rem;
+    }
+
+    /* Demo timeline card (static) */
+    .demo-timeline-item {
+      position: relative;
+      padding-left: 1.25rem;
+      border-left: 3px solid rgba(58,52,64,0.12);
+      max-width: 520px;
+    }
+    .demo-timeline-dot {
+      position: absolute;
+      left: -8px;
+      top: 1.15rem;
+      width: 14px;
+      height: 14px;
+      border-radius: 999px;
+      background: var(--color-accent);
+      outline: 3px solid var(--color-bg);
+    }
+
+    /* Demo home window (static) */
+    .demo-window-wrap {
+      width: 220px;
+    }
+  </style>
+</head>
+<body>
+
+  <header class="site-header">
+    <div class="container header-row">
+      <a class="brand" href="/">← karolinenielsen.no</a>
+      <span style="font-size:0.82rem;color:var(--color-text-secondary);font-weight:500">Style Guide</span>
+    </div>
+  </header>
+
+  <nav class="sg-nav">
+    <a href="#identity">Identity</a>
+    <a href="#colours">Colours</a>
+    <a href="#typography">Typography</a>
+    <a href="#spacing">Spacing</a>
+    <a href="#components">Components</a>
+    <a href="#motion">Motion</a>
+  </nav>
+
+
+  <!-- ── Identity ──────────────────────────────── -->
+  <section class="sg-section" id="identity">
+    <p class="sg-title">Identity</p>
+
+    <div class="identity-grid">
+      <div class="identity-card">
+        <h3>Aesthetic</h3>
+        <p>Soft glassmorphism on a muted lavender base. Translucent cards, subtle borders, and gentle shadows create depth without noise.</p>
+      </div>
+      <div class="identity-card">
+        <h3>Personality</h3>
+        <p>Thoughtful and technical, yet warm and approachable. Confident but not loud — the design steps back and lets the content speak.</p>
+      </div>
+      <div class="identity-card">
+        <h3>Motion</h3>
+        <p>Spring-based hover lifts feel alive. Transitions are fast (200–400 ms) and purposeful — every animation has a reason.</p>
+      </div>
+      <div class="identity-card">
+        <h3>Shape</h3>
+        <p>Generously rounded corners (12–20 px). Pill-shaped labels and chips. No sharp edges — everything feels friendly and considered.</p>
+      </div>
+      <div class="identity-card">
+        <h3>Colour philosophy</h3>
+        <p>A purple-grey base anchors the UI. Saturated category colours provide accent and meaning — each domain has its own distinct hue.</p>
+      </div>
+      <div class="identity-card">
+        <h3>Typography</h3>
+        <p>IBM Plex Sans exclusively. Technical and humanist — the same font IBM uses in its developer tools. Weights 300–700 in active use.</p>
+      </div>
+    </div>
+  </section>
+
+
+  <!-- ── Colours ──────────────────────────────── -->
+  <section class="sg-section" id="colours">
+    <p class="sg-title">Colours</p>
+
+    <p class="sg-subtitle">Base palette</p>
+    <div class="swatch-grid">
+      <div class="swatch">
+        <div class="swatch-color" style="background:#F7F5F8"></div>
+        <div class="swatch-info">
+          <p class="swatch-name">Background</p>
+          <p class="swatch-hex">--color-bg · #F7F5F8</p>
+          <p class="swatch-usage">Page background</p>
+        </div>
+      </div>
+      <div class="swatch">
+        <div class="swatch-color" style="background:#C6BDD8"></div>
+        <div class="swatch-info">
+          <p class="swatch-name">Primary</p>
+          <p class="swatch-hex">--color-primary · #C6BDD8</p>
+          <p class="swatch-usage">Site header, hero avatar</p>
+        </div>
+      </div>
+      <div class="swatch">
+        <div class="swatch-color" style="background:#B3A6C9"></div>
+        <div class="swatch-info">
+          <p class="swatch-name">Secondary</p>
+          <p class="swatch-hex">--color-secondary · #B3A6C9</p>
+          <p class="swatch-usage">Footer background</p>
+        </div>
+      </div>
+      <div class="swatch">
+        <div class="swatch-color" style="background:#9C8AAE"></div>
+        <div class="swatch-info">
+          <p class="swatch-name">Accent</p>
+          <p class="swatch-hex">--color-accent · #9C8AAE</p>
+          <p class="swatch-usage">Timeline dots, skill chips</p>
+        </div>
+      </div>
+      <div class="swatch">
+        <div class="swatch-color" style="background:#3A3440"></div>
+        <div class="swatch-info">
+          <p class="swatch-name">Text</p>
+          <p class="swatch-hex">--color-text · #3A3440</p>
+          <p class="swatch-usage">Primary text, headings</p>
+        </div>
+      </div>
+      <div class="swatch">
+        <div class="swatch-color" style="background:#6F6887"></div>
+        <div class="swatch-info">
+          <p class="swatch-name">Text secondary</p>
+          <p class="swatch-hex">--color-text-secondary · #6F6887</p>
+          <p class="swatch-usage">Metadata, subtitles, captions</p>
+        </div>
+      </div>
+    </div>
+
+    <p class="sg-subtitle">Domain / category palette</p>
+    <div class="swatch-grid">
+      <div class="swatch">
+        <div class="swatch-color" style="background:#3d8b9e"></div>
+        <div class="swatch-info">
+          <p class="swatch-name">Data Analytics</p>
+          <p class="swatch-hex">#3D8B9E</p>
+          <p class="swatch-usage">Filter chip, slide gradient</p>
+        </div>
+      </div>
+      <div class="swatch">
+        <div class="swatch-color" style="background:#7c5ea3"></div>
+        <div class="swatch-info">
+          <p class="swatch-name">AI & Machine Learning</p>
+          <p class="swatch-hex">#7C5EA3</p>
+          <p class="swatch-usage">Filter chip, Studies window header</p>
+        </div>
+      </div>
+      <div class="swatch">
+        <div class="swatch-color" style="background:#c47f35"></div>
+        <div class="swatch-info">
+          <p class="swatch-name">System Development</p>
+          <p class="swatch-hex">#C47F35</p>
+          <p class="swatch-usage">Filter chip, Work window header</p>
+        </div>
+      </div>
+      <div class="swatch">
+        <div class="swatch-color" style="background:#5a8a58"></div>
+        <div class="swatch-info">
+          <p class="swatch-name">Interaction Design</p>
+          <p class="swatch-hex">#5A8A58</p>
+          <p class="swatch-usage">Filter chip, status badge, Travels window</p>
+        </div>
+      </div>
+      <div class="swatch">
+        <div class="swatch-color" style="background:#b06078"></div>
+        <div class="swatch-info">
+          <p class="swatch-name">Research & Society</p>
+          <p class="swatch-hex">#B06078</p>
+          <p class="swatch-usage">Filter chip</p>
+        </div>
+      </div>
+    </div>
+
+    <p class="sg-subtitle">Status colours</p>
+    <div class="swatch-grid">
+      <div class="swatch">
+        <div class="swatch-color" style="background:rgba(90,138,88,0.15);border-bottom:1px solid rgba(58,52,64,0.08)"></div>
+        <div class="swatch-info">
+          <p class="swatch-name">Active <span class="status-badge status-active" style="vertical-align:middle">Active</span></p>
+          <p class="swatch-hex">#5A8A58 @ 15% opacity</p>
+          <p class="swatch-usage">Live / current projects</p>
+        </div>
+      </div>
+      <div class="swatch">
+        <div class="swatch-color" style="background:rgba(196,127,53,0.15);border-bottom:1px solid rgba(58,52,64,0.08)"></div>
+        <div class="swatch-info">
+          <p class="swatch-name">In progress <span class="status-badge status-in-progress" style="vertical-align:middle">In progress</span></p>
+          <p class="swatch-hex">#C47F35 @ 15% opacity</p>
+          <p class="swatch-usage">Work in progress</p>
+        </div>
+      </div>
+      <div class="swatch">
+        <div class="swatch-color" style="background:rgba(111,104,135,0.12);border-bottom:1px solid rgba(58,52,64,0.08)"></div>
+        <div class="swatch-info">
+          <p class="swatch-name">Archived <span class="status-badge status-archived" style="vertical-align:middle">Archived</span></p>
+          <p class="swatch-hex">Text-secondary @ 12% opacity</p>
+          <p class="swatch-usage">Completed / past work</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+
+  <!-- ── Typography ──────────────────────────── -->
+  <section class="sg-section" id="typography">
+    <p class="sg-title">Typography</p>
+
+    <p class="sg-subtitle">Typeface — IBM Plex Sans</p>
+    <p style="color:var(--color-text-secondary);font-size:0.9rem;max-width:60ch;margin-bottom:1.5rem">
+      Designed by Mike Abbink at IBM. Humanist grotesque with a technical edge — reads well at small sizes, 
+      expressive at large ones. Used exclusively across the entire site.
+    </p>
+
+    <p class="sg-subtitle">Weight scale</p>
+    <div style="margin-bottom:2rem">
+      <div class="type-row">
+        <span class="type-label">300 · Light</span>
+        <span class="type-sample" style="font-weight:300;font-size:1.2rem">The quick brown fox jumps over the lazy dog</span>
+      </div>
+      <div class="type-row">
+        <span class="type-label">400 · Regular</span>
+        <span class="type-sample" style="font-weight:400;font-size:1.2rem">The quick brown fox jumps over the lazy dog</span>
+      </div>
+      <div class="type-row">
+        <span class="type-label">500 · Medium</span>
+        <span class="type-sample" style="font-weight:500;font-size:1.2rem">The quick brown fox jumps over the lazy dog</span>
+      </div>
+      <div class="type-row">
+        <span class="type-label">600 · SemiBold</span>
+        <span class="type-sample" style="font-weight:600;font-size:1.2rem">The quick brown fox jumps over the lazy dog</span>
+      </div>
+      <div class="type-row">
+        <span class="type-label">700 · Bold</span>
+        <span class="type-sample" style="font-weight:700;font-size:1.2rem">The quick brown fox jumps over the lazy dog</span>
+      </div>
+    </div>
+
+    <p class="sg-subtitle">Type scale</p>
+    <div>
+      <div class="type-row">
+        <span class="type-label">1.4rem / 700<br>Hero name</span>
+        <span class="type-sample" style="font-size:1.4rem;font-weight:700">Karoline Nielsen</span>
+      </div>
+      <div class="type-row">
+        <span class="type-label">1.1rem / 700<br>Panel heading (h1)</span>
+        <span class="type-sample"><h1 style="margin:0;font-size:1.75rem">Studies</h1></span>
+      </div>
+      <div class="type-row">
+        <span class="type-label">1.05rem / 600<br>Card title</span>
+        <span class="type-sample" style="font-size:1.05rem;font-weight:600">MSc Applied Artificial Intelligence</span>
+      </div>
+      <div class="type-row">
+        <span class="type-label">1rem / 400<br>Body text</span>
+        <span class="type-sample" style="font-size:1rem;font-weight:400">Deepening expertise in applied AI — from neural networks and evolutionary computation to the societal dimensions of intelligent systems.</span>
+      </div>
+      <div class="type-row">
+        <span class="type-label">0.95rem / 400<br>Secondary body</span>
+        <span class="type-sample" style="font-size:0.95rem;color:var(--color-text-secondary)">OsloMet – Oslo Metropolitan University</span>
+      </div>
+      <div class="type-row">
+        <span class="type-label">0.85rem / 500<br>Labels, status</span>
+        <span class="type-sample" style="font-size:0.85rem;font-weight:500">Open to opportunities</span>
+      </div>
+      <div class="type-row">
+        <span class="type-label">0.82rem / 500<br>Chips, small labels</span>
+        <span class="type-sample" style="font-size:0.82rem;font-weight:500">Python · Deep Learning · Power BI</span>
+      </div>
+      <div class="type-row">
+        <span class="type-label">0.78rem / 700<br>Category headers<br>(uppercase)</span>
+        <span class="type-sample" style="font-size:0.78rem;font-weight:700;text-transform:uppercase;letter-spacing:0.08em">Studies · Work · Projects · Travels</span>
+      </div>
+    </div>
+  </section>
+
+
+  <!-- ── Spacing ────────────────────────────── -->
+  <section class="sg-section" id="spacing">
+    <p class="sg-title">Spacing</p>
+    <p style="color:var(--color-text-secondary);font-size:0.9rem;margin-bottom:1.5rem">
+      Based on a 4 px root unit (0.25 rem). All spacing values are multiples of this unit.
+    </p>
+
+    <div class="space-grid">
+      <div class="space-row"><div class="space-box" style="width:4px"></div><span class="space-label">4 px · 0.25rem — micro gap (dot spacing)</span></div>
+      <div class="space-row"><div class="space-box" style="width:8px"></div><span class="space-label">8 px · 0.5rem — tight gap (chip rows)</span></div>
+      <div class="space-row"><div class="space-box" style="width:12px"></div><span class="space-label">12 px · 0.75rem — compact gap</span></div>
+      <div class="space-row"><div class="space-box" style="width:16px"></div><span class="space-label">16 px · 1rem — card padding, standard gap</span></div>
+      <div class="space-row"><div class="space-box" style="width:20px"></div><span class="space-label">20 px · 1.25rem — grid gap (home windows)</span></div>
+      <div class="space-row"><div class="space-box" style="width:24px"></div><span class="space-label">24 px · 1.5rem — section padding (container)</span></div>
+      <div class="space-row"><div class="space-box" style="width:32px"></div><span class="space-label">32 px · 2rem — hero section top padding</span></div>
+      <div class="space-row"><div class="space-box" style="width:48px"></div><span class="space-label">48 px · 3rem — footer top margin</span></div>
+    </div>
+
+    <p class="sg-subtitle" style="margin-top:2rem">Border radius</p>
+    <div style="display:flex;flex-wrap:wrap;gap:1rem;align-items:flex-end">
+      <div style="text-align:center">
+        <div style="width:56px;height:56px;background:var(--color-primary);border-radius:6px;margin:0 auto"></div>
+        <span class="space-label">6 px<br>Inline code</span>
+      </div>
+      <div style="text-align:center">
+        <div style="width:56px;height:56px;background:var(--color-primary);border-radius:12px;margin:0 auto"></div>
+        <span class="space-label">12 px<br>Project cards</span>
+      </div>
+      <div style="text-align:center">
+        <div style="width:56px;height:56px;background:var(--color-primary);border-radius:16px;margin:0 auto"></div>
+        <span class="space-label">16 px<br>Timeline cards, showcases</span>
+      </div>
+      <div style="text-align:center">
+        <div style="width:56px;height:56px;background:var(--color-primary);border-radius:20px;margin:0 auto"></div>
+        <span class="space-label">20 px<br>Home windows</span>
+      </div>
+      <div style="text-align:center">
+        <div style="width:56px;height:56px;background:var(--color-primary);border-radius:999px;margin:0 auto"></div>
+        <span class="space-label">999 px (pill)<br>Tabs, chips, badges, dots</span>
+      </div>
+    </div>
+  </section>
+
+
+  <!-- ── Components ────────────────────────── -->
+  <section class="sg-section" id="components">
+    <p class="sg-title">Components</p>
+
+    <div class="component-shelf">
+      <p class="component-shelf-label">Navigation tabs</p>
+      <div class="component-row">
+        <a class="tab" aria-current="page" href="#" onclick="return false">Home</a>
+        <a class="tab" href="#" onclick="return false">Studies</a>
+        <a class="tab" href="#" onclick="return false">Work</a>
+        <a class="tab" href="#" onclick="return false">Projects</a>
+        <a class="tab" href="#" onclick="return false">Travels</a>
+      </div>
+    </div>
+
+    <div class="component-shelf">
+      <p class="component-shelf-label">Domain filter buttons</p>
+      <div class="component-row">
+        <button class="filter-btn" style="--cat-color:#3d8b9e;--cat-bg:rgba(61,139,158,0.12)">Data Analytics</button>
+        <button class="filter-btn filter-active" style="--cat-color:#7c5ea3;--cat-bg:rgba(124,94,163,0.12);background:#7c5ea3;color:#fff;border-color:#7c5ea3">AI & Machine Learning</button>
+        <button class="filter-btn" style="--cat-color:#c47f35;--cat-bg:rgba(196,127,53,0.12)">System Development</button>
+        <button class="filter-btn" style="--cat-color:#5a8a58;--cat-bg:rgba(90,138,88,0.12)">Interaction Design</button>
+        <button class="filter-btn" style="--cat-color:#b06078;--cat-bg:rgba(176,96,120,0.12)">Research & Society</button>
+      </div>
+    </div>
+
+    <div class="component-shelf">
+      <p class="component-shelf-label">Skill chips</p>
+      <div class="component-row">
+        <span class="skill-chip" style="background:rgba(61,139,158,0.12);color:#3d8b9e;border-color:#3d8b9e">Python</span>
+        <span class="skill-chip" style="background:rgba(124,94,163,0.12);color:#7c5ea3;border-color:#7c5ea3">Deep Learning</span>
+        <span class="skill-chip" style="background:rgba(196,127,53,0.12);color:#c47f35;border-color:#c47f35">SQL</span>
+        <span class="skill-chip" style="background:rgba(90,138,88,0.12);color:#5a8a58;border-color:#5a8a58">Figma</span>
+        <span class="skill-chip" style="background:rgba(176,96,120,0.12);color:#b06078;border-color:#b06078">Research Methods</span>
+        <span class="skill-chip skill-highlight" style="background:rgba(124,94,163,0.12);color:#7c5ea3;border-color:#7c5ea3">Highlighted</span>
+        <span class="skill-chip faded" style="background:rgba(124,94,163,0.12);color:#7c5ea3;border-color:#7c5ea3">Faded</span>
+      </div>
+    </div>
+
+    <div class="component-shelf">
+      <p class="component-shelf-label">Tool chips</p>
+      <div class="component-row">
+        <span class="tool-chip">Azure</span>
+        <span class="tool-chip">Databricks</span>
+        <span class="tool-chip">Power BI</span>
+        <span class="tool-chip">Figma</span>
+      </div>
+    </div>
+
+    <div class="component-shelf">
+      <p class="component-shelf-label">Status badges</p>
+      <div class="component-row">
+        <span class="status-badge status-active">Active</span>
+        <span class="status-badge status-in-progress">In progress</span>
+        <span class="status-badge status-archived">Archived</span>
+      </div>
+    </div>
+
+    <div class="component-shelf">
+      <p class="component-shelf-label">Hero status indicator</p>
+      <div class="component-row">
+        <span class="hero-status">
+          <span class="status-dot" aria-hidden="true"></span>
+          Open to opportunities
+        </span>
+      </div>
+    </div>
+
+    <div class="component-shelf">
+      <p class="component-shelf-label">Timeline card</p>
+      <div class="demo-timeline-item">
+        <div class="demo-timeline-dot"></div>
+        <div class="timeline-card">
+          <div class="timeline-header" style="display:grid;grid-template-columns:1fr auto;gap:0.75rem;align-items:center;padding:1rem">
+            <div>
+              <p class="timeline-title">MSc Applied Artificial Intelligence</p>
+              <p class="timeline-meta">OsloMet – Oslo Metropolitan University</p>
+            </div>
+            <div class="timeline-dates">2024–2026</div>
+          </div>
+          <div class="timeline-body" style="padding:0 1rem 1rem">
+            <p class="item-summary">Deepening expertise in applied AI — from neural networks and evolutionary computation to the societal dimensions of intelligent systems.</p>
+            <div class="skills-row">
+              <span class="skill-chip" style="background:rgba(124,94,163,0.12);color:#7c5ea3;border-color:#7c5ea3">Deep Learning</span>
+              <span class="skill-chip" style="background:rgba(124,94,163,0.12);color:#7c5ea3;border-color:#7c5ea3">Swarm Robotics</span>
+              <span class="skill-chip" style="background:rgba(61,139,158,0.12);color:#3d8b9e;border-color:#3d8b9e">Research Methods</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="component-shelf">
+      <p class="component-shelf-label">Showcase card (Projects grid)</p>
+      <div style="max-width:320px">
+        <article class="showcase-card" style="--win-color:#3d8b9e">
+          <div class="showcase-header">
+            <div>
+              <h3 class="showcase-title">Example Project</h3>
+              <span class="showcase-year">2025</span>
+            </div>
+            <span class="status-badge status-active">Active</span>
+          </div>
+          <p class="showcase-desc">A short description of what the project does and why it matters to the world.</p>
+          <div class="project-tools">
+            <span class="tool-chip">Python</span>
+            <span class="tool-chip">FastAPI</span>
+            <span class="tool-chip">React</span>
+          </div>
+          <div class="showcase-links">
+            <a class="showcase-link" href="#" onclick="return false">GitHub ↗</a>
+            <a class="showcase-link showcase-link--demo" href="#" onclick="return false">Live demo ↗</a>
+          </div>
+        </article>
+      </div>
+    </div>
+
+    <div class="component-shelf">
+      <p class="component-shelf-label">Home window (static preview)</p>
+      <div class="demo-window-wrap">
+        <div class="home-window" style="--win-color:#7c5ea3">
+          <div class="window-header">
+            <span aria-hidden="true">📚</span> Studies
+          </div>
+          <div class="window-slides-wrapper">
+            <div class="window-slide active" style="background:linear-gradient(145deg,#8b6ac4 0%,#4a3070 100%)">
+              <div class="slide-content">
+                <p class="slide-title">MSc Applied AI</p>
+                <p class="slide-meta">OsloMet · 2024–2026</p>
+              </div>
+            </div>
+          </div>
+          <div class="window-footer">
+            <div class="window-dots">
+              <button class="window-dot active"></button>
+              <button class="window-dot"></button>
+              <button class="window-dot"></button>
+            </div>
+            <button class="window-view-all">View all →</button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+
+  <!-- ── Motion ────────────────────────────── -->
+  <section class="sg-section" id="motion">
+    <p class="sg-title">Motion</p>
+
+    <div class="motion-grid">
+      <div class="motion-card">
+        <h3>Spring hover</h3>
+        <code>cubic-bezier(0.34, 1.56, 0.64, 1)</code>
+        <p>Used on home windows, filter buttons, skill chips. Overshoots slightly before settling — feels alive and playful.</p>
+      </div>
+      <div class="motion-card">
+        <h3>Standard ease</h3>
+        <code>ease · 200–300 ms</code>
+        <p>Used on tabs, card hover lift, timeline dot scale. Smooth and neutral — for interactions that shouldn't feel bouncy.</p>
+      </div>
+      <div class="motion-card">
+        <h3>Slide entrance</h3>
+        <code>slideIn · opacity 0→1, translateY 16px→0</code>
+        <p>Applied to timeline items and showcase cards when their panel is shown. Staggered by 80 ms per item.</p>
+      </div>
+      <div class="motion-card">
+        <h3>Slideshow crossfade</h3>
+        <code>opacity · 600 ms ease</code>
+        <p>Home window slides fade between one another. Auto-advances every 4 s, pauses on hover.</p>
+      </div>
+      <div class="motion-card">
+        <h3>Hover lift — cards</h3>
+        <code>translateY(-3px) · 250 ms ease</code>
+        <p>Timeline cards and showcase cards lift gently on hover, accompanied by a soft box-shadow increase.</p>
+      </div>
+      <div class="motion-card">
+        <h3>Hover lift — windows</h3>
+        <code>translateY(-10px) rotate(-0.8deg) · 350 ms spring</code>
+        <p>Home windows lift more dramatically with a slight tilt — the most expressive interaction on the site.</p>
+      </div>
+      <div class="motion-card">
+        <h3>Status pulse</h3>
+        <code>statusPulse · 2.2 s ease-in-out infinite</code>
+        <p>The green dot next to "Open to opportunities" pulses gently — opacity and scale cycle to suggest presence.</p>
+      </div>
+      <div class="motion-card">
+        <h3>Dot pill expand</h3>
+        <code>width 6px→20px · 300 ms spring</code>
+        <p>Active slideshow dots expand into a pill shape. The spring curve makes the snap feel snappy but organic.</p>
+      </div>
+    </div>
+
+    <p style="margin-top:2rem;font-size:0.85rem;color:var(--color-text-secondary);max-width:65ch">
+      <strong>Guiding principle:</strong> Every animation should have a reason. Hover feedback, entrance transitions, 
+      and the living slideshow are all purposeful. Avoid decoration for its own sake — motion should communicate state or reward interaction.
+    </p>
+  </section>
+
+  <div style="height:4rem"></div>
+
+</body>
+</html>
