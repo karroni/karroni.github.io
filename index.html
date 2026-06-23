@@ -16,14 +16,34 @@
     <div class="container header-row">
       <div class="brand">Karoline Nielsen</div>
       <nav class="tabs" aria-label="Sections">
-        <a class="tab" href="#studies" data-section="studies">Studies</a>
-        <a class="tab" href="#work" data-section="work">Work</a>
-        <a class="tab" href="#travels" data-section="travels">Travels</a>
+        <a class="tab" href="#studies"  data-section="studies">Studies</a>
+        <a class="tab" href="#work"     data-section="work">Work</a>
+        <a class="tab" href="#projects" data-section="projects">Projects</a>
+        <a class="tab" href="#travels"  data-section="travels">Travels</a>
       </nav>
     </div>
   </header>
 
   <main class="container">
+    <section class="hero" aria-label="Introduction">
+      <div class="hero-avatar" aria-hidden="true">
+        <!--
+          To use a real photo, replace the div below with:
+          <img src="/assets/photo.jpg" alt="Karoline Nielsen" class="hero-photo">
+          (drop your photo into an assets/ folder first)
+        -->
+        <div class="hero-initials">KN</div>
+      </div>
+      <div class="hero-content">
+        <h2 class="hero-name">Karoline Nielsen</h2>
+        <p class="hero-bio">MSc student in Applied AI at OsloMet, with a background in data analytics and interaction design. I wish to build things at the intersection of intelligent systems and human experience.</p>
+        <span class="hero-status">
+          <span class="status-dot" aria-hidden="true"></span>
+          Open to opportunities
+        </span>
+      </div>
+    </section>
+
     <div id="filter-bar"></div>
 
     <section class="panel" id="studies" data-panel>
@@ -42,12 +62,18 @@
       <h1>Travels</h1>
       <p>Places, projects, and stories (coming soon).</p>
     </section>
+
+    <section class="panel" id="projects" data-panel hidden>
+      <h1>Projects</h1>
+      <p>Things I've built — code, data, and everything in between.</p>
+      <div id="projects-grid" class="projects-grid" aria-label="Projects"></div>
+    </section>
   </main>
 
   <footer class="site-footer">
     <div class="container">&copy; 2026 Karoline Nielsen</div>
   </footer>
 
-  <script src="/app.js"></script>
+  <script type="module" src="/app.js"></script>
 </body>
 </html>
