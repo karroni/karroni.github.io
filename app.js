@@ -1,4 +1,4 @@
-import { renderFilterBar, renderStudiesTimeline, renderWorkTimeline, renderProjectsGrid, renderHomeWindows } from "./render.js";
+import { renderFilterBar, renderStudiesTimeline, renderWorkTimeline, renderProjectsGrid, renderHomeWindows, renderJourneyTimeline } from "./render.js";
 import { applyFilter } from "./filter.js";
 import { studiesTimeline } from "./data/studies.js";
 import { workTimeline } from "./data/work.js";
@@ -69,6 +69,37 @@ window.addEventListener("hashchange", () => showPanel(currentFromHash()));
 
 
 /* ───────────────────────────────────────
+   Journey timeline events
+   ─────────────────────────────────────── */
+
+function extractStartYear(dateStr) {
+  const m = dateStr.match(/(\d{4})/);
+  return m ? parseInt(m[1]) : 0;
+}
+
+const timelineEvents = [
+  ...studiesTimeline.map(item => ({
+    id:      item.id,
+    title:   item.title,
+    org:     item.org,
+    dates:   item.dates,
+    type:    "study",
+    section: "studies",
+    year:    extractStartYear(item.dates)
+  })),
+  ...workTimeline.filter(w => w.tags.length > 0).map(item => ({
+    id:      item.id,
+    title:   item.role,
+    org:     item.org,
+    dates:   item.dates,
+    type:    "work",
+    section: "work",
+    year:    extractStartYear(item.dates)
+  }))
+].sort((a, b) => b.year - a.year);
+
+
+/* ───────────────────────────────────────
    Home windows config
    ─────────────────────────────────────── */
 
@@ -124,6 +155,7 @@ document.addEventListener("DOMContentLoaded", () => {
   renderStudiesTimeline("studies-timeline", studiesTimeline);
   renderWorkTimeline("work-timeline", workTimeline);
   renderProjectsGrid("projects-grid", projectsTimeline);
+  renderJourneyTimeline("journey-timeline", timelineEvents, navigateTo);
   renderHomeWindows("home-windows", homeWindows, navigateTo);
   showPanel(currentFromHash());
 });

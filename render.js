@@ -316,3 +316,87 @@ function initSlideshow(windowEl, onNavigate) {
   goTo(0);
   start();
 }
+
+
+/* ───────────────────────────────────────
+   Journey timeline (squiggly)
+   ─────────────────────────────────────── */
+
+export function renderJourneyTimeline(mountId, events, onNavigate) {
+  const mount = document.getElementById(mountId);
+  if (!mount) return;
+
+  const spacing = 148;
+  const topPad  = 30;
+  const totalH  = topPad + (events.length - 1) * spacing + topPad + 20;
+
+  // Alternate points left (x=22) / right (x=78) in a 0-100 viewBox
+  const pts = events.map((ev, i) => ({
+    x: i % 2 === 0 ? 22 : 78,
+    y: topPad + i * spacing,
+    left: i % 2 === 0,
+    ev
+  }));
+
+  // Build smooth cubic-bezier path
+  let d = `M 50 0`;
+  for (let i = 0; i < pts.length; i++) {
+    const { x, y } = pts[i];
+    const prevX = i === 0 ? 50 : pts[i - 1].x;
+    const prevY = i === 0 ? 0  : pts[i - 1].y;
+    const dy = y - prevY;
+    d += ` C ${prevX} ${prevY + dy * 0.55}, ${x} ${y - dy * 0.35}, ${x} ${y}`;
+  }
+  const last = pts[pts.length - 1];
+  const dyTail = totalH - last.y;
+  d += ` C ${last.x} ${last.y + dyTail * 0.45}, 50 ${totalH - dyTail * 0.2}, 50 ${totalH}`;
+
+  // Dot elements in SVG
+  const svgDots = pts.map(pt => `
+    <circle cx="${pt.x}" cy="${pt.y}" r="5.5"
+            fill="${pt.ev.type === 'study' ? 'var(--cat-ai-ml-color)' : 'var(--cat-system-dev-color)'}"
+            stroke="white" stroke-width="2.5"/>
+  `).join("");
+
+  // Event cards (HTML positioned absolutely)
+  const cards = pts.map(pt => `
+    <div class="journey-event ${pt.left ? 'left' : 'right'}"
+         style="top:${pt.y - 34}px"
+         role="button" tabindex="0"
+         data-section="${pt.ev.section}"
+         data-item="${pt.ev.id}"
+         aria-label="Go to: ${pt.ev.title}">
+      <div class="event-card">
+        <span class="event-badge ${pt.ev.type}">${pt.ev.type === 'study' ? '📚' : '💼'}</span>
+        <p class="event-title">${pt.ev.title}</p>
+        <p class="event-org">${pt.ev.org.split(' (')[0].trim()}</p>
+        <p class="event-dates">${pt.ev.dates}</p>
+      </div>
+    </div>
+  `).join("");
+
+  mount.style.height = `${totalH}px`;
+  mount.innerHTML = `
+    <svg class="journey-svg"
+         viewBox="0 0 100 ${totalH}"
+         preserveAspectRatio="none"
+         width="100%" height="${totalH}"
+         aria-hidden="true">
+      <path d="${d}" fill="none"
+            stroke="var(--color-accent)" stroke-width="0.45"
+            stroke-linecap="round"/>
+      ${svgDots}
+    </svg>
+    ${cards}
+  `;
+
+  mount.querySelectorAll(".journey-event").forEach(el => {
+    const go = () => {
+      if (onNavigate) onNavigate(el.dataset.section, el.dataset.item);
+    };
+    el.addEventListener("click", go);
+    el.addEventListener("keydown", e => {
+      if (e.key === "Enter" || e.key === " ") { e.preventDefault(); go(); }
+    });
+  });
+}
