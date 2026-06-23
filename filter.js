@@ -26,12 +26,7 @@ export function applyFilter() {
     }
   });
 
-  document.querySelectorAll(".project-card[data-tags]").forEach(card => {
-    const tags = card.dataset.tags.split(",").filter(Boolean);
-    card.classList.toggle("faded", !!activeFilter && !tags.includes(activeFilter));
-  });
-
-  document.querySelectorAll(".showcase-card[data-tags]").forEach(card => {
+  document.querySelectorAll(".project-card[data-tags], .showcase-card[data-tags]").forEach(card => {
     const tags = card.dataset.tags.split(",").filter(Boolean);
     card.classList.toggle("faded", !!activeFilter && !tags.includes(activeFilter));
   });
@@ -41,12 +36,9 @@ export function updateFilterButtons() {
   document.querySelectorAll(".filter-btn").forEach(btn => {
     if (btn.dataset.category === activeFilter) {
       btn.classList.add("filter-active");
-      const cat = categories.find(c => c.id === activeFilter);
-      if (cat) {
-        btn.style.background = cat.color;
-        btn.style.color = "#fff";
-        btn.style.borderColor = cat.color;
-      }
+      btn.style.background   = `var(--cat-${activeFilter}-color)`;
+      btn.style.color        = "#fff";
+      btn.style.borderColor  = `var(--cat-${activeFilter}-color)`;
     } else {
       btn.classList.remove("filter-active");
       btn.style.cssText = "";

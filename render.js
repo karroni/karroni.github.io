@@ -2,8 +2,8 @@ import { categories } from "./data/categories.js";
 import { setFilter } from "./filter.js";
 
 function getCategoryStyle(tagId) {
-  const cat = categories.find(c => c.id === tagId);
-  return cat ? `background:${cat.bg};color:${cat.color};border-color:${cat.color}` : "";
+  if (!tagId) return "";
+  return `background:var(--cat-${tagId}-bg);color:var(--cat-${tagId}-color);border-color:var(--cat-${tagId}-color)`;
 }
 
 export function renderFilterBar(mountId) {
@@ -14,7 +14,7 @@ export function renderFilterBar(mountId) {
       <span class="filter-label">Explore by domain</span>
       ${categories.map(c => `
         <button class="filter-btn" type="button" data-category="${c.id}"
-                style="--cat-color:${c.color};--cat-bg:${c.bg}">
+                style="--cat-color:var(--cat-${c.id}-color);--cat-bg:var(--cat-${c.id}-bg)">
           ${c.label}
         </button>
       `).join("")}
@@ -225,13 +225,12 @@ export function renderHomeWindows(mountId, windows, onNavigate) {
 
 function renderWindow(win) {
   const comingSoon = win.items.length === 0;
-  const fallbackBg = `linear-gradient(145deg, ${win.color} 0%, ${win.color}99 100%)`;
   const slides = comingSoon
-    ? [{ id: null, title: "Coming soon", meta: "Check back later", bg: fallbackBg }]
-    : win.items.map(item => ({ ...item, bg: item.bg || fallbackBg }));
+    ? [{ id: null, title: "Coming soon", meta: "Check back later", bgVar: `--win-${win.id}-color` }]
+    : win.items.map(item => ({ ...item }));
 
   return `
-    <div class="home-window" style="--win-color:${win.color}">
+    <div class="home-window" style="--win-color:var(--win-${win.id}-color)">
       <div class="window-header">
         <span aria-hidden="true">${win.icon}</span>
         ${win.label}
@@ -241,7 +240,7 @@ function renderWindow(win) {
           <div class="window-slide ${i === 0 ? "active" : ""}"
                data-section="${win.id}"
                data-item="${slide.id || ""}"
-               style="background:${slide.bg}"
+               style="background:var(${slide.bgVar})"
                role="button"
                tabindex="0"
                aria-label="View: ${slide.title}">

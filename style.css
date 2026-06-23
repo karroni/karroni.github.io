@@ -1,11 +1,49 @@
 :root {
-  --color-bg: #FFFEF9;
-  --color-primary: #DAEEFF;
-  --color-secondary: #FFE4F0;
-  --color-accent: #7ECBA1;
-  --color-text: #1E2832;
+  /* ── Base palette ──────────────────────────────────────────
+     Change any value here and it updates everywhere on the site.
+     ──────────────────────────────────────────────────────── */
+  --color-bg:             #FFFEF9;
+  --color-primary:        #DAEEFF;
+  --color-secondary:      #FFE4F0;
+  --color-accent:         #7ECBA1;
+  --color-text:           #1E2832;
   --color-text-secondary: #5A6E80;
   --font-sans: "IBM Plex Sans", system-ui, -apple-system, BlinkMacSystemFont, sans-serif;
+
+  /* ── Domain / category colours ────────────────────────────
+     Used by filter chips, skill chips, and home window headers.
+     ──────────────────────────────────────────────────────── */
+  --cat-data-analytics-color:     #0EA5C9;
+  --cat-data-analytics-bg:        rgba(14, 165, 201, 0.12);
+  --cat-ai-ml-color:              #8B5CF6;
+  --cat-ai-ml-bg:                 rgba(139, 92, 246, 0.12);
+  --cat-system-dev-color:         #F59E0B;
+  --cat-system-dev-bg:            rgba(245, 158, 11, 0.12);
+  --cat-interaction-design-color: #10B981;
+  --cat-interaction-design-bg:    rgba(16, 185, 129, 0.12);
+  --cat-research-society-color:   #F43F5E;
+  --cat-research-society-bg:      rgba(244, 63, 94, 0.12);
+
+  /* ── Home window accent colours ───────────────────────────
+     Each window header uses its category colour.
+     ──────────────────────────────────────────────────────── */
+  --win-studies-color:  var(--cat-ai-ml-color);
+  --win-work-color:     var(--cat-system-dev-color);
+  --win-projects-color: var(--cat-data-analytics-color);
+  --win-travels-color:  var(--cat-interaction-design-color);
+
+  /* ── Slide gradients ──────────────────────────────────────
+     One variable per slide. To change a slide's look, edit here.
+     ──────────────────────────────────────────────────────── */
+  --slide-studies-0: linear-gradient(145deg, #9F7AEA 0%, #6B46C1 100%);
+  --slide-studies-1: linear-gradient(145deg, #667EEA 0%, #4C51BF 100%);
+  --slide-studies-2: linear-gradient(145deg, #B794F4 0%, #7C3AED 100%);
+
+  --slide-work-0: linear-gradient(145deg, #1a1a2e 0%, #3c3c7e 100%);
+  --slide-work-1: linear-gradient(145deg, #0EA5C9 0%, #0369A1 100%);
+  --slide-work-2: linear-gradient(145deg, #F43F5E 0%, #BE123C 100%);
+  --slide-work-3: linear-gradient(145deg, #10B981 0%, #047857 100%);
+  --slide-work-4: linear-gradient(145deg, #F59E0B 0%, #B45309 100%);
 }
 
 * { box-sizing: border-box; }

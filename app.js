@@ -77,53 +77,39 @@ const homeWindows = [
     id: "studies",
     label: "Studies",
     icon: "📚",
-    color: "#8B5CF6",
     items: studiesTimeline.map((item, i) => ({
       id:    item.id,
       title: item.title,
       meta:  `${item.org} · ${item.dates}`,
-      bg: [
-        "linear-gradient(145deg, #9F7AEA 0%, #6B46C1 100%)",
-        "linear-gradient(145deg, #667EEA 0%, #4C51BF 100%)",
-        "linear-gradient(145deg, #B794F4 0%, #7C3AED 100%)"
-      ][i]
+      bgVar: `--slide-studies-${i}`
     }))
   },
   {
     id: "work",
     label: "Work",
     icon: "💼",
-    color: "#F59E0B",
     items: workTimeline.filter(w => w.tags.length > 0).map((item, i) => ({
       id:    item.id,
       title: item.role,
       meta:  `${item.org} · ${item.dates}`,
-      bg: [
-        "linear-gradient(145deg, #1a1a2e 0%, #3c3c7e 100%)",
-        "linear-gradient(145deg, #0EA5C9 0%, #0369A1 100%)",
-        "linear-gradient(145deg, #F43F5E 0%, #BE123C 100%)",
-        "linear-gradient(145deg, #10B981 0%, #047857 100%)",
-        "linear-gradient(145deg, #F59E0B 0%, #B45309 100%)"
-      ][i]
+      bgVar: `--slide-work-${i}`
     }))
   },
   {
     id: "projects",
     label: "Projects",
     icon: "⚡",
-    color: "#0EA5C9",
-    items: projectsTimeline.map(item => ({
+    items: projectsTimeline.map((item, i) => ({
       id:    item.id,
       title: item.title,
       meta:  (item.tech || []).slice(0, 3).join(" · "),
-      bg:    "linear-gradient(145deg, #0EA5C9 0%, #0369A1 100%)"
+      bgVar: `--slide-projects-${i}`
     }))
   },
   {
     id: "travels",
     label: "Travels",
     icon: "✈️",
-    color: "#10B981",
     items: []
   }
 ];
